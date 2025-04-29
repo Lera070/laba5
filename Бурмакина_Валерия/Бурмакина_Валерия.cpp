@@ -114,21 +114,15 @@ int main() {
 
         shader.use();
 
-        // Цвет изменяется во времени
-        //float timeValue = glfwGetTime();
-       // float red = abs(sin(timeValue));
-       // shader.setUniform("ourColour", red, 0.0f, 1.0f, 1.0f); // ourColour — vec4
-
-        // Матрицы камеры
         glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
         glm::mat4 projection = glm::perspective(glm::radians(fov), 800.0f / 600.0f, 0.1f, 100.0f);
-        glm::mat4 modelMat = glm::mat4(1.0f); // можно scale, rotate, translate
+        glm::mat4 modelMat = glm::mat4(1.0f); 
 
         settingMat4(shader.ID, "view", view);
         settingMat4(shader.ID, "projection", projection);
         settingMat4(shader.ID, "model", modelMat);
 
-        model.Draw(shader); // Здесь рендерится .obj-модель
+        model.Draw(shader); 
 
         glfwSwapBuffers(window);
         glfwPollEvents();
